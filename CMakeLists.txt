@@ -150,7 +150,7 @@ if (WIN32)
 
    add_definitions(-D_WINSOCKAPI_)
    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-   add_definitions(-DKNET_MEMORY_LEAK_CHECK)
+   # add_definitions(-DKNET_MEMORY_LEAK_CHECK)
    
    set(kNetLinkLibraries ${kNetLinkLibraries} Ws2_32)
    
