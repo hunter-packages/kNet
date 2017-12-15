@@ -15,6 +15,9 @@
 cmake_minimum_required(VERSION 3.2)
 project(kNet VERSION 2.7.0)
 
+option(KNET_BUILD_SAMPLES "Build samples" OFF)
+option(KNET_BUILD_TESTS "Build tests" OFF)
+
 # Generate a build configuration file to ensure the build flags match for the user of the library.
 SET(BUILD_CONFIG_FILE include/kNetBuildConfig.h)
 file(WRITE ${BUILD_CONFIG_FILE} "// This file is programmatically generated using CMake.\n// This file shows the compilation settings that were used to build kNet.\n// These need to match for the client code using kNet.\n")
@@ -200,6 +203,8 @@ target_link_libraries(kNet PUBLIC ${kNetLinkLibraries})
 
 set(KNET_OUT_DIR ${CMAKE_SOURCE_DIR}/lib)
 
+if(KNET_BUILD_SAMPLES)
+
 add_subdirectory(samples/ConnectFlood)
 #add_subdirectory(samples/FileTransfer)
 add_subdirectory(samples/FirewallTest)
@@ -212,7 +217,13 @@ add_subdirectory(samples/SimpleChat)
 add_subdirectory(samples/SpeedTest)
 add_subdirectory(samples/TrashTalk)
 
+endif()
+
+if(KNET_BUILD_TESTS)
+
 add_subdirectory(tests)
+
+endif()
 
 set_target_properties(kNet PROPERTIES 
 	ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib
