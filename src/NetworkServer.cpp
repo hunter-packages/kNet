@@ -33,6 +33,10 @@
 #include <iostream>
 #include <sstream>
 
+#if defined(UNIX) || defined(ANDROID)
+# include <unistd.h> // closesocket
+#endif
+
 namespace kNet
 {
 
