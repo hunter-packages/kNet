@@ -13,7 +13,7 @@
 #  limitations under the License.
 
 cmake_minimum_required(VERSION 3.2)
-project(kNet)
+project(kNet VERSION 2.7.0)
 
 # Generate a build configuration file to ensure the build flags match for the user of the library.
 SET(BUILD_CONFIG_FILE include/kNetBuildConfig.h)
