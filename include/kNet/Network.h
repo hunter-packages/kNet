@@ -16,7 +16,7 @@
 /** @file Network.h
 	@brief The class Network. The root point for creating client and server objects. */
 
-#if defined(__unix) || defined(ANDROID)
+#if defined(__unix) || defined(ANDROID) || defined(__APPLE__)
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

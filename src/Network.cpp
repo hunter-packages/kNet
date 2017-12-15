@@ -20,7 +20,7 @@
 
 #include <cassert>
 
-#if defined(__unix) || defined(ANDROID)
+#if defined(__unix) || defined(ANDROID) || defined(__APPLE__)
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>

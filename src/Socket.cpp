@@ -34,7 +34,7 @@
 
 using namespace std;
 
-#if defined(__unix) || defined(ANDROID)
+#if defined(__unix) || defined(ANDROID) || defined(__APPLE__)
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -889,7 +889,7 @@ bool Socket::EndSend(OverlappedTransferBuffer *sendBuffer)
 	}
 	return true;
 
-#elif defined(__unix) || defined(ANDROID)
+#elif defined(__unix) || defined(ANDROID) || defined(__APPLE__)
 	bool success = Send(sendBuffer->buffer.buf, sendBuffer->buffer.len);
 	DeleteOverlappedTransferBuffer(sendBuffer);
 	return success;
