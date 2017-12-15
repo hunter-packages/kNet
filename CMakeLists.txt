@@ -196,7 +196,7 @@ if (USE_BOOST)
    set(kNetLinkLibraries ${kNetLinkLibraries} ${Boost_LIBRARIES})   
 endif()
 
-target_link_libraries(kNet ${kNetLinkLibraries})
+target_link_libraries(kNet PUBLIC ${kNetLinkLibraries})
 
 set(KNET_OUT_DIR ${CMAKE_SOURCE_DIR}/lib)
 
