@@ -19,7 +19,7 @@ option(KNET_BUILD_SAMPLES "Build samples" OFF)
 option(KNET_BUILD_TESTS "Build tests" OFF)
 
 # Generate a build configuration file to ensure the build flags match for the user of the library.
-SET(BUILD_CONFIG_FILE include/kNetBuildConfig.h)
+SET(BUILD_CONFIG_FILE "${CMAKE_CURRENT_BINARY_DIR}/include/kNetBuildConfig.h")
 file(WRITE ${BUILD_CONFIG_FILE} "// This file is programmatically generated using CMake.\n// This file shows the compilation settings that were used to build kNet.\n// These need to match for the client code using kNet.\n")
 file(APPEND ${BUILD_CONFIG_FILE} "#pragma once\n\n")
 
@@ -61,15 +61,15 @@ AddCompilationDefine(KNET_ENABLE_WINXP_SUPPORT)
 if (NOT USE_BOOST) # USE_BOOST and KNET_THREAD_CHECKING_ENABLED are mutually exclusive, because boost::thread_id() does not work across .dll boundaries.
    # If set, extra code is inserted in debug mode to assert that certain thread race conditions don't occur.
    # (This can considerably slow down kNet performance)
-   AddCompilationDefine(KNET_THREAD_CHECKING_ENABLED)
+   # AddCompilationDefine(KNET_THREAD_CHECKING_ENABLED)
 endif()
 
 # Enable internal LOG messaging if this flag is enabled. Comment this out to squeeze the last bit of 
 # extra performance by avoiding all logging-related string operations.
-AddCompilationDefine(KNET_LOGGING_SUPPORT_ENABLED)
+# AddCompilationDefine(KNET_LOGGING_SUPPORT_ENABLED)
 
 # Enable storing profiling data from different network level events.
-AddCompilationDefine(KNET_NETWORK_PROFILING)
+# AddCompilationDefine(KNET_NETWORK_PROFILING)
 
 if (USE_BOOST)
    AddCompilationDefine(KNET_USE_BOOST)
@@ -177,6 +177,9 @@ foreach(srcFile ${kNetSourceFiles})
 endforeach()
 
 add_library(kNet ${kNetSourceFiles} ${kNetHeaderFiles})
+target_include_directories(
+    kNet PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
+)
 
 # Add the main kNet include directory root folder to all projects.
 include_directories(./include)
