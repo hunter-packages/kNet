@@ -175,7 +175,7 @@ foreach(srcFile ${kNetSourceFiles})
    set_source_files_properties(${srcFile} PROPERTIES COMPILE_FLAGS "-DDEBUG_CPP_NAME=\"\\\"${baseName}\"\\\"")
 endforeach()
 
-add_library(kNet STATIC ${kNetSourceFiles} ${kNetHeaderFiles})
+add_library(kNet ${kNetSourceFiles} ${kNetHeaderFiles})
 
 # Add the main kNet include directory root folder to all projects.
 include_directories(./include)
