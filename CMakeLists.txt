@@ -270,7 +270,7 @@ install(
 
 install(
     DIRECTORY "include"
-    DESTINATION "${include_install_dir}"
+    DESTINATION "."
 )
 
 install(
