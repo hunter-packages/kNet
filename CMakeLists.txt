@@ -149,7 +149,7 @@ if (WIN32)
    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
    add_definitions(-DKNET_MEMORY_LEAK_CHECK)
    
-   set(kNetLinkLibraries ${kNetLinkLibraries} ws2_32.lib)
+   set(kNetLinkLibraries ${kNetLinkLibraries} Ws2_32)
    
 elseif (UNIX)
    file(GLOB kNetUnixSourceFiles ./src/unix/*.cpp)
@@ -158,7 +158,8 @@ elseif (UNIX)
    if (USE_BOOST)
       list(REMOVE_ITEM kNetUnixSourceFiles ${PROJECT_SOURCE_DIR}/./src/unix/UnixThread.cpp)
    else()
-      set(kNetLinkLibraries ${kNetLinkLibraries} pthread)
+      find_package(Threads REQUIRED)
+      set(kNetLinkLibraries ${kNetLinkLibraries} Threads::Threads)
    endif()
 
    set(kNetSourceFiles ${kNetSourceFiles} ${kNetUnixSourceFiles})
