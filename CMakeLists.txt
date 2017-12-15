@@ -35,13 +35,13 @@ macro(AddCompilationDefine define)
    file(APPEND ${BUILD_CONFIG_FILE} "#ifndef ${define}\n#define ${define}\n#endif\n\n")
 endmacro()
 
-set(USE_BOOST TRUE)
+set(USE_BOOST FALSE)
 #set(BOOST_ROOT "TODO_SpecifyYourBoostRootHereIfCMakeAutoSearchFails")
 
 # TinyXML is embedded to the repository, so you can safely keep this true.
 # However, it is not required for core kNet use, but only for the MessageCompiler tool, in which
 # case you can disable it here by setting USE_TINYXML to FALSE, and excluding MessageCompiler from the build.
-set(USE_TINYXML TRUE)
+set(USE_TINYXML FALSE)
 set(TINYXML_ROOT "src/tinyxml")
 
 # If you want to enable the use of visual debugging/profiling windows, uncomment the following line (must
