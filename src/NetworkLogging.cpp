@@ -33,7 +33,7 @@
 #include "kNet/Lockable.h"
 #include "kNet/Clock.h"
 
-#if defined(UNIX) || defined(ANDROID)
+#if defined(__unix) || defined(ANDROID)
 #define _snprintf snprintf
 #endif
 

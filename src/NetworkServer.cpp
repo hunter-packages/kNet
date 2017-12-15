@@ -33,7 +33,7 @@
 #include <iostream>
 #include <sstream>
 
-#if defined(UNIX) || defined(ANDROID)
+#if defined(__unix) || defined(ANDROID)
 # include <unistd.h> // closesocket
 #endif
 
